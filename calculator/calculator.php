@@ -1,4 +1,6 @@
 <?php 
+    ob_start();
+    session_start();
     // auto loader:
     require_once("includes/auto_classloader.inc.php");
 
@@ -8,6 +10,8 @@
     <?php
 
     $cal = new Calculator;
-    unset($cal);
 ?>
 </fieldset>
+<?php
+    $cal->displayHistory();
+    ob_end_flush();
