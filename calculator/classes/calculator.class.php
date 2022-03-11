@@ -58,14 +58,32 @@ class Calculator
                     $this->save_result = $this->first_num * $this->second_num;
                     return;
                 case "/":
-                    $this->save_result = $this->first_num / $this->second_num;
-                    return;
+                    // if the user enters any number other than zero for the property $this->second_num:
+                    // if so, continue the calculation
+                    if ($this->second_num != 0) {
+                        $this->save_result = $this->first_num / $this->second_num;
+                        return;
+                    // if the user enters a zero at the property $this->second_num:
+                    // if so, the result should be a error, because you cannot divide by zero.
+                    } elseif ($this->second_num == 0) {
+                        $this->save_result = "You cannot divide by zero.";
+                        return;
+                    }
                 case "^":
                     $this->save_result = $this->first_num ** $this->second_num;
                     return;
                 case "%":
-                    $this->save_result = $this->first_num % $this->second_num;
-                    return;
+                    // if the user enters any number other than zero for the property $this->second_num:
+                    // if so, continue the calculation
+                    if ($this->second_num != 0) {
+                        $this->save_result = $this->first_num % $this->second_num;
+                        return;
+                    // if the user enters a zero at the property $this->second_num:
+                    // if so, the result should remain modulus of $this->first_num
+                    } elseif ($this->second_num == 0) {
+                        $this->save_result = $this->first_num;
+                        return;
+                    }
                 default:
                     echo "The operator entered is invalid."; // error message
                     header("refresh:2; url=calculator.php"); // refresh page after 2 seconds
